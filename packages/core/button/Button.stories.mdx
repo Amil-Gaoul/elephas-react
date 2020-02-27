@@ -1,0 +1,32 @@
+import { Meta, Description, Props, Preview, Story } from '@storybook/addon-docs/blocks';
+import { css } from '@emotion/core';
+
+import Button from './';
+
+<Meta title="Components|Button" component={Button} />
+
+# Button
+
+<Props of={Button} />
+
+<Preview>
+  <Button>Expand</Button>
+</Preview>
+
+<Preview>
+  <Button appearance="primary">Create new file</Button>
+</Preview>
+
+<Preview>
+  <Button appearance="danger">Block user</Button>
+</Preview>
+
+<Preview>
+  <Button size="small">Edit file</Button>
+</Preview>
+
+<Preview>
+  <Button appearance="default" disabled>Can't click</Button>
+  <Button appearance="primary" disabled>Can't click</Button>
+  <Button appearance="danger" disabled>Can't click</Button>
+</Preview>

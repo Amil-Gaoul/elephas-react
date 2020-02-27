@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "jsx": "react",
+    "allowJs": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "packages",
+    "rootDirs": [
+      "packages"
+    ],
+    "emitDecoratorMetadata": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "tags": [
+          "styled",
+          "css",
+          "sty"
+        ],
+        "validate": true,
+        "lint": {
+          "emptyRules": "error"
+        }
+      }
+    ]
+  },
+  "include": [
+    "packages/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts"
+  ]
+}

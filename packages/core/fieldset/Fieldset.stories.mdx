@@ -1,0 +1,43 @@
+import { Meta, Description, Props, Preview, Story } from '@storybook/addon-docs/blocks';
+
+import { Fieldset } from '.';
+import { Checkbox } from '../checkbox';
+import { Radio } from '../radio';
+
+<Meta title="Components|Fieldset" component={Fieldset} />
+
+# Fieldset
+
+<Props of={Fieldset} />
+
+<Preview>
+  <Fieldset
+    legend="Способы авторизации платежа"
+    hint="Выберите все использованные"
+  >
+    <Checkbox checked label="2FA" />
+    <Checkbox label="3D Secure" />
+    <Checkbox checked label="Подтверждение по телефону" />
+  </Fieldset>
+</Preview>
+
+<Preview>
+  <Fieldset
+    legend="Способы авторизации платежа"
+    hint="Выберите все использованные"
+  >
+    <Checkbox readonly checked label="2FA" />
+    <Checkbox readonly label="3D Secure" />
+    <Checkbox readonly checked label="Подтверждение по телефону" />
+  </Fieldset>
+</Preview>
+
+<Preview>
+  <Fieldset
+    legend="Вектор атаки"
+    error="Выберите вектор: это обязательное поле"
+  >
+    <Radio label="Внешний" name="exmpl1" />
+    <Radio label="Внутренний" name="exmpl1" />
+  </Fieldset>
+</Preview>

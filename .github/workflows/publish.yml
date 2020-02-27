@@ -1,0 +1,32 @@
+name: Publish
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+      - name: Install dependencies
+        run: yarn install
+      - name: Build package
+        run: |
+          cd ./packages/core
+          yarn build
+      - name: Create .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+      - name: Publish package
+        run: |
+          cd ./packages/core/build
+          yarn publish --no-git-tag-version --no-commit-hooks --non-interactive --access public --new-version "${{ steps.get_version.outputs.VERSION }}"

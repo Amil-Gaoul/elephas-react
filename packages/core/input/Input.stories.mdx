@@ -1,0 +1,96 @@
+import { Meta, Description, Props, Preview, Story } from '@storybook/addon-docs/blocks';
+
+import { Input } from './';
+
+<Meta title="Components|Input" component={Input} />
+
+# Input
+
+<Props of={Input} />
+
+<Preview>
+  <form>
+    <style dangerouslySetInnerHTML={{__html: `
+      .input {
+        margin-bottom: 16px;
+      }
+    `}} />
+    <Input
+      appearance="error"
+      className="input"
+      error="Cумма перевода не может быть больше 600 000 ₽"
+      label="Сумма перевода"
+      type="text"
+      value="1 000 000 ₽"
+      width="4"
+    />
+    <Input
+      className="input"
+      hint="Заполнять так же, как написано в паспорте"
+      label="Где выдан паспорт"
+      type="text"
+      value="ОВД г. Новосибирска по Советскому р-ну, код 540-016"
+      width="8"
+    />
+    <Input
+      className="input"
+      label="Код ОКВЭД"
+      type="number"
+      value="1"
+      width="2"
+    />
+    <Input
+      appearance="error"
+      className="input"
+      error="Имя является обязательным полем"
+      label="Имя"
+      type="text"
+      width="4"
+    />
+    <Input
+      className="input"
+      label="Фамилия"
+      type="text"
+      value="Константинопольский"
+      width="4"
+    />
+    <Input
+      appearance="readonly"
+      className="input"
+      label="Способ перевода"
+      type="text"
+      value="Реализация несанкционированного доступа к банкоматам и платежным терминалам"
+      width="12"
+    />
+    <Input
+      appearance="disabled"
+      className="input"
+      label="Номер обращения"
+      type="text"
+      width="6"
+    />
+    <Input
+      appearance="disabled"
+      className="input"
+      label="Номер обращения"
+      type="text"
+      width="6"
+      value="1209489534589"
+      hint="В правоохранительные органы"
+    />
+    <Input
+      className="input"
+      label="Номер обращения в правоохранительные органы"
+      type="text"
+      width="6"
+    />
+    <Input
+      label="Городское образование"
+      className="input"
+      type="text"
+      value="Западный Усть-Каменогорский район"
+      width="6"
+      hint="В Российской Федерации"
+    />
+  </form>
+</Preview>

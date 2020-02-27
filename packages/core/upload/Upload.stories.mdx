@@ -1,0 +1,42 @@
+import { Meta, Description, Props, Preview, Story } from '@storybook/addon-docs/blocks';
+
+import Upload from '.';
+import UploadReadonlyExample from './UploadReadonlyExample';
+
+<Meta title="Components|Upload" component={Upload} />
+
+# Upload
+
+<Props of={Upload} />
+
+<Preview>
+  <form>
+    <style dangerouslySetInnerHTML={{__html: `
+      .upload {
+        margin-bottom: 24px;
+      }
+    `}} />
+    <Upload
+      label="Выберите файл или перетащите его сюда"
+      className="upload"
+      onChange={(files) => console.log(files)}
+      singleFileMaxSize={1048576}
+      singleFileMaxSizeError="Файл превышает максимальный размер:"
+    />
+    <Upload
+      label="Выберите файлы или перетащите их сюда"
+      className="upload"
+      onChange={(files) => console.log(files)}
+      appearance="error"
+      multiple
+      error="Для открытия счёта нам нужен скан вашего паспорта"
+    />
+    <Upload
+      label="Выберите файлы или перетащите его сюда"
+      className="upload"
+      onChange={(files) => console.log(files)}
+      appearance="disabled"
+    />
+    <UploadReadonlyExample />
+  </form>
+</Preview>

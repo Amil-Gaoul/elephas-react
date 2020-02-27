@@ -1,0 +1,65 @@
+import { Meta, Description, Props, Preview, Story } from '@storybook/addon-docs/blocks';
+
+import Badge from './';
+
+<Meta title="Components|Badge" component={Badge} />
+
+# Badge
+
+<Props of={Badge} />
+
+<Preview>
+  <Badge />
+</Preview>
+
+<Preview>
+  <Badge content="1" />
+</Preview>
+
+<Preview>
+  <Badge content="23" />
+</Preview>
+
+<Preview>
+  <style dangerouslySetInnerHTML={{__html: `
+    .example {
+      display: inline-block;
+    }
+  `}} />
+  <Badge position="onSquare" className='example'>
+    <div style={{ width: 32, height: 32, backgroundColor: '#ccc' }}/>
+  </Badge>
+</Preview>
+
+<Preview>
+  <style dangerouslySetInnerHTML={{__html: `
+    .example {
+      display: inline-block;
+    }
+  `}} />
+  <Badge position="onSquare" content="45" className='example'>
+    <div style={{ width: 32, height: 32, backgroundColor: '#ccc' }} />
+  </Badge>
+</Preview>
+
+<Preview>
+  <style dangerouslySetInnerHTML={{__html: `
+    .example {
+      display: inline-block;
+    }
+  `}} />
+  <Badge position="onCircle" className='example'>
+    <div style={{ width: 32, height: 32, backgroundColor: '#ccc', borderRadius: 9001 }} />
+  </Badge>
+</Preview>
+
+<Preview>
+  <style dangerouslySetInnerHTML={{__html: `
+    .example {
+      display: inline-block;
+    }
+  `}} />
+  <Badge position="onCircle" content="89" className='example'>
+    <div style={{ width: 32, height: 32, backgroundColor: '#ccc', borderRadius: 9001 }} />
+  </Badge>
+</Preview>
