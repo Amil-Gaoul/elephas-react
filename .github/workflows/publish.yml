@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy-storybook:
-    name: Deploy storybook to GitHub Pages
+    name: Deploy storybook
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -17,7 +17,7 @@ jobs:
       run: yarn install
     - name: Build storybook
       run: yarn build-storybook    
-    - name: Deploy
+    - name: Deploy to gh-pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
