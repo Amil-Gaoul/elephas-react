@@ -8,6 +8,7 @@ import { FileItemProps } from './types';
 import {
   fileItem,
   fileName,
+  fileNameWrapper,
   fileExtension as fileNameExtensionCss,
   fileError,
   fileItemError,
@@ -58,7 +59,7 @@ const FileItem = (props: FileItemProps) => {
         css={[fileItem, error && fileItemError]}
         key={name}
       >
-        <div>
+        <div css={fileNameWrapper}>
           { error && <span css={errorIcon}><ErrorIcon /></span> }
           <span css={fileName}>{ fileNameWithoutExtension }</span>
           <span css={fileNameExtensionCss}>{ fileExtension }</span>

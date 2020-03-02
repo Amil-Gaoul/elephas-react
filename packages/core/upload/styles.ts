@@ -91,6 +91,11 @@ export const fileItemError = css`
   border: 1px solid #E5243C;
 `;
 
+export const fileNameWrapper = css`
+  display: flex;
+  align-items: flex-end;
+`;
+
 export const fileName = css`
   ${reset};
   display: inline-block;
@@ -116,7 +121,7 @@ export const fileSize = css`
   ${reset};
   margin-left: 12px;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 18px;
   color: #646572;
   white-space: nowrap;
 `;
