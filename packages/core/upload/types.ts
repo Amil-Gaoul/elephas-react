@@ -15,6 +15,8 @@ export interface UploadProps {
   label: string;
   multiple?: boolean;
   accept?: string;
+  name?: string;
+  id?: string;
   appearance?: 'error' | 'default' | 'disabled' | 'readonly';
   error?: string;
   /**

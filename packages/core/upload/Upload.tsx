@@ -23,6 +23,8 @@ function Upload(props: UploadProps) {
     label,
     multiple = false,
     accept,
+    name,
+    id,
     error = '',
     singleFileMaxSize,
     singleFileMaxSizeError,
@@ -90,12 +92,12 @@ function Upload(props: UploadProps) {
     inputRef.current!.click();
   }
 
-  function onDeleteFile(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>, name: string) {
+  function onDeleteFile(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>, fileName: string) {
     if (isUploadActionDisabled() || !isUserActionValid(event)) {
       return;
     }
 
-    const filteredFiles = uploadedFiles.filter((file) => file.name !== name);
+    const filteredFiles = uploadedFiles.filter((uploadedFile) => uploadedFile.name !== fileName);
 
     setUploadedFiles(filteredFiles);
   }
@@ -144,6 +146,8 @@ function Upload(props: UploadProps) {
           css={input}
           type="file"
           accept={accept}
+          name={name}
+          id={id}
           ref={inputRef}
           multiple={multiple}
           onChange={onUploadFile}
@@ -156,10 +160,10 @@ function Upload(props: UploadProps) {
         && <div css={errorCss}>{ error }</div>
       }
       {
-        uploadedFiles.map(({ name, size }) => (
+        uploadedFiles.map(({ name: fileName, size }) => (
           <FileItem
             key={name}
-            name={name}
+            name={fileName}
             appearance={appearance}
             onDelete={onDeleteFile}
             error={isFileExceededMaxSize(size)}
