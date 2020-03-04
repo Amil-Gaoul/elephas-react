@@ -29,10 +29,6 @@ function formatBytes(bytes: number) {
   return `${(bytes / 1048576).toFixed(2)} MB`;
 }
 
-export function getErrorMessage(maxSizeError: string, maxSize: number) {
-  return `${maxSizeError} ${formatBytes(maxSize)}`;
-}
-
 const FileItem = (props: FileItemProps) => {
   const {
     name,
@@ -79,7 +75,7 @@ const FileItem = (props: FileItemProps) => {
       {
         error
         && maxSize
-        && <span css={fileError}>{ maxSizeError && getErrorMessage(maxSizeError, maxSize) }</span>
+        && <span css={fileError}>{ maxSizeError }</span>
       }
     </div>
   );

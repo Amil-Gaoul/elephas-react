@@ -2,7 +2,7 @@ import React, { MouseEvent, KeyboardEvent } from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import FileItem, { getErrorMessage } from './FileItem';
+import FileItem from './FileItem';
 
 describe('<FileItem />', () => {
   let singleFileMaxSizeError: string;
@@ -30,7 +30,7 @@ describe('<FileItem />', () => {
       />,
     );
 
-    expect(getByText(getErrorMessage(singleFileMaxSizeError, maxSize))).toBeInTheDocument();
+    expect(getByText(singleFileMaxSizeError)).toBeInTheDocument();
   });
 
   it('should call delete callback', () => {

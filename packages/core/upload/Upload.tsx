@@ -16,6 +16,10 @@ import {
   uploadHighlighted,
 } from './styles';
 
+function isUserActionValid(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) {
+  return event.type === 'click' || (event as KeyboardEvent).keyCode === 13;
+}
+
 function Upload(props: UploadProps) {
   const {
     appearance = 'default',
@@ -46,7 +50,7 @@ function Upload(props: UploadProps) {
       return;
     }
 
-    addUploadedFiles(Array.isArray(files) ? files : [files]);
+    setUploadedFiles(Array.isArray(files) ? files : [files]);
   }, [files]);
 
   function isFileExceededMaxSize(size: number) {
@@ -78,10 +82,6 @@ function Upload(props: UploadProps) {
 
   function isUploadActionDisabled() {
     return appearance === 'disabled' || appearance === 'readonly';
-  }
-
-  function isUserActionValid(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) {
-    return event.type === 'click' || (event as KeyboardEvent).keyCode === 13;
   }
 
   function onOpenFileDialog(event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) {
@@ -160,9 +160,9 @@ function Upload(props: UploadProps) {
         && <div css={errorCss}>{ error }</div>
       }
       {
-        uploadedFiles.map(({ name: fileName, size }) => (
+        uploadedFiles.map(({ name: fileName, size, lastModified }) => (
           <FileItem
-            key={name}
+            key={lastModified}
             name={fileName}
             appearance={appearance}
             onDelete={onDeleteFile}
