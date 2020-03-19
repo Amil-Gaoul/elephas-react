@@ -57,4 +57,21 @@ describe('<Upload />', () => {
     expect(fileItemsCount).toHaveLength(1);
     expect(onChange).toHaveBeenCalledWith([file]);
   });
+
+  it('should delete all files', () => {
+    const files = [
+      new File(['file1'], 'file1.txt', {
+        type: 'text/plain', lastModified: 1584515610530,
+      }),
+      new File(['file2'], 'file2.txt', {
+        type: 'text/plain', lastModified: 1584515610535,
+      }),
+    ];
+
+    const { getAllByTestId } = render(<Upload label="Выберите файл" onChange={onChange} files={files} />);
+    const deleteButtons = getAllByTestId('delete');
+
+    deleteButtons.forEach((deleteButton) => fireEvent.click(deleteButton));
+    expect(onChange).toHaveBeenCalledWith([]);
+  });
 });

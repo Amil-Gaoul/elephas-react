@@ -41,18 +41,6 @@ function Upload(props: UploadProps) {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [highlight, setHighlight] = useState(false);
 
-  function addUploadedFiles(filesToAdd: File[]) {
-    setUploadedFiles((prevUploadedFiles: File[]) => (multiple ? prevUploadedFiles.concat(filesToAdd) : filesToAdd));
-  }
-
-  useEffect(() => {
-    if (!files) {
-      return;
-    }
-
-    setUploadedFiles(Array.isArray(files) ? files : [files]);
-  }, [files]);
-
   function isFileExceededMaxSize(size: number) {
     if (!singleFileMaxSize) {
       return false;
@@ -61,14 +49,23 @@ function Upload(props: UploadProps) {
     return size > singleFileMaxSize;
   }
 
+  function addUploadedFiles(filesToAdd: File[]) {
+    const newUploadedFiles = multiple ? uploadedFiles.concat(filesToAdd) : filesToAdd;
+
+    setUploadedFiles(newUploadedFiles);
+
+    const validFiles = newUploadedFiles.filter(({ size }) => !isFileExceededMaxSize(size));
+
+    onChange(validFiles.length ? validFiles : []);
+  }
+
   useEffect(() => {
-    const validFiles = uploadedFiles.filter(({ size }) => !isFileExceededMaxSize(size));
-    if (!validFiles.length) {
+    if (files === undefined) {
       return;
     }
 
-    onChange(validFiles);
-  }, [uploadedFiles]);
+    setUploadedFiles(Array.isArray(files) ? files : [files]);
+  }, [files]);
 
   function onUploadFile(event: ChangeEvent<HTMLInputElement>) {
     const { files: filesToUpload } = event.target;
@@ -100,6 +97,7 @@ function Upload(props: UploadProps) {
     const filteredFiles = uploadedFiles.filter((uploadedFile) => uploadedFile.name !== fileName);
 
     setUploadedFiles(filteredFiles);
+    onChange(filteredFiles);
   }
 
   function onDragOver(event: DragEvent<HTMLDivElement>) {
